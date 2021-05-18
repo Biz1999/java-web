@@ -6,15 +6,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DAO.
+ */
 public class DAO {
-	/** MÛdulo de conex„o **/
+
+	/** M√≥dulo de conex√£o *. */
 	// Parametros de conexao
 	private String driver = "com.mysql.cj.jdbc.Driver";
+
+	/** The url. */
 	private String url = "jdbc:mysql://127.0.0.1:3333/usuarios?useTimezone=true&serverTimezone=UTC";
+
+	/** The user. */
 	private String user = "root";
+
+	/** The password. */
 	private String password = "ale12345";
 
-	// MÈtodo de conexao
+	/**
+	 * Conectar.
+	 *
+	 * @return the connection
+	 */
+	// M√©todo de conexao
 	private Connection conectar() {
 		Connection con = null;
 		try {
@@ -28,7 +44,11 @@ public class DAO {
 		}
 	}
 
-	/** CRUD CREATE **/
+	/**
+	 * CRUD CREATE *.
+	 *
+	 * @param usuario the usuario
+	 */
 	public void inserirUsuario(JavaBeans usuario) {
 		String create = "insert into contatos (nome,fone,email) values (?,?,?)";
 		try {
@@ -50,7 +70,11 @@ public class DAO {
 		}
 	}
 
-	/** CRUD READ **/
+	/**
+	 * CRUD READ *.
+	 *
+	 * @return the array list
+	 */
 	public ArrayList<JavaBeans> listarContatos() {
 		// Criando o ArrayList
 		ArrayList<JavaBeans> usuarios = new ArrayList<>();
@@ -60,7 +84,7 @@ public class DAO {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read);
 			ResultSet rs = pst.executeQuery();
-			// o laÁo abaixo ser· executado enquanto houver contatos
+			// o la√ßo abaixo ser√° executado enquanto houver contatos
 			while (rs.next()) {
 				// variaveis de apoio que recebem os dados do banco
 				String idcon = rs.getString(1);
@@ -78,7 +102,11 @@ public class DAO {
 		}
 	}
 
-	/** CRUD UPDATE **/
+	/**
+	 * CRUD UPDATE *.
+	 *
+	 * @param usuario the usuario
+	 */
 	public void selecionarUsuario(JavaBeans usuario) {
 		String read2 = "select * from contatos where idcon = ?";
 		try {
@@ -97,6 +125,12 @@ public class DAO {
 			System.out.println(e);
 		}
 	}
+
+	/**
+	 * Editar usuario.
+	 *
+	 * @param usuario the usuario
+	 */
 	// editar o usuario
 	public void editarUsuario(JavaBeans usuario) {
 		String update = "update contatos set nome=?, fone=?, email=? where idcon=?";
@@ -113,8 +147,12 @@ public class DAO {
 			System.out.println(e);
 		}
 	}
-	
-	/** CRUD DELETE **/
+
+	/**
+	 * CRUD DELETE *.
+	 *
+	 * @param usuario the usuario
+	 */
 	public void deletaUsuario(JavaBeans usuario) {
 		String delete = "delete from contatos where idcon=?";
 		try {
