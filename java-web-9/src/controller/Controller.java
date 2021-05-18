@@ -13,16 +13,37 @@ import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 import model.JavaBeans;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Controller.
+ */
 @WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete" })
 public class Controller extends HttpServlet {
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The dao. */
 	DAO dao = new DAO();
+	
+	/** The usuario. */
 	JavaBeans usuario = new JavaBeans();
 
+	/**
+	 * Instantiates a new controller.
+	 */
 	public Controller() {
 		super();
 	}
 
+	/**
+	 * Do get.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getServletPath();
@@ -42,10 +63,18 @@ public class Controller extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Usuarios.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	// Listar usuarios
 	protected void usuarios(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Criando um objeto que ir· receber os dados JavaBeans
+		// Criando um objeto que ir√° receber os dados JavaBeans
 		ArrayList<JavaBeans> lista = dao.listarContatos();
 		// Encaminhar a lista ao documento usuarios.jsp
 		request.setAttribute("usuarios", lista);
@@ -53,20 +82,36 @@ public class Controller extends HttpServlet {
 		rd.forward(request, response);
 	}
 
+	/**
+	 * Novo usuario.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	// Novo contato
 	protected void novoUsuario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// setar as vari·veis
+		// setar as vari√°veis
 		this.usuario.setNome(request.getParameter("nome"));
 		this.usuario.setPhone(request.getParameter("phone"));
 		this.usuario.setEmail(request.getParameter("email"));
-		// invocar o mÈtodo inserirUsuario passando o objeto usuario
+		// invocar o m√©todo inserirUsuario passando o objeto usuario
 		dao.inserirUsuario(this.usuario);
 		// Redirecionar para usuarios.jsp
 		response.sendRedirect("main");
 
 	}
 
+	/**
+	 * Listar usuario.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	// Editar contato
 	protected void listarUsuario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -77,7 +122,7 @@ public class Controller extends HttpServlet {
 		usuario.setIdcon(idcon);
 		// Metodo seleciona contato
 		dao.selecionarUsuario(usuario);
-		// Setar os atributos do formul·rio com o conte˙do JavaBeans
+		// Setar os atributos do formul√°rio com o conte√∫do JavaBeans
 		request.setAttribute("idcon", usuario.getIdcon());
 		request.setAttribute("nome", usuario.getNome());
 		request.setAttribute("phone", usuario.getPhone());
@@ -87,19 +132,35 @@ public class Controller extends HttpServlet {
 		rd.forward(request, response);
 	}
 
+	/**
+	 * Editar usuario.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	protected void editarUsuario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// setar as vari·veis JavaBeans
+		// setar as vari√°veis JavaBeans
 		usuario.setIdcon(request.getParameter("idcon"));
 		usuario.setNome(request.getParameter("nome"));
 		usuario.setPhone(request.getParameter("phone"));
 		usuario.setEmail(request.getParameter("email"));
-		// executar a ediÁ„o
+		// executar a edi√ß√£o
 		dao.editarUsuario(this.usuario);
 		// redirecionar aos usuarios
 		response.sendRedirect("main");
 	}
 
+	/**
+	 * Deletar usuario.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @throws ServletException the servlet exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	// DELETAR USUARIO
 	protected void deletarUsuario(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
