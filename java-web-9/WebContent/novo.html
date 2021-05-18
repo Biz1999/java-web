@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<title>Novo Usuario</title>
+<meta charset="utf-8">
+<link rel="icon" href="images/phone.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<h1>Criar novo usuário</h1>
+	<form name="frmUsuario" action="insert">
+		<table>
+			<tr>
+				<td><input type="text" name="nome" placeholder="Nome"
+					class="box-1"></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="phone" placeholder="Phone"
+					class="box-2"></td>
+			</tr>
+			<tr>
+				<td><input type="text" name="email" placeholder="Email"
+					class="box-1"></td>
+			</tr>
+		</table>
+		<input type="button" value="Adicionar" class="button-users"
+			onclick="Validar()">
+	</form>
+	<script src="scripts/validador.js"></script>
+</body>
+</html>
